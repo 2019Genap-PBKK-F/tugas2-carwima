@@ -1,0 +1,14 @@
+{
+    "name": "tugas",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "author": "CAR",
+    "license": "ITS",
+    "dependencies": {
+        "body-parser": "^1.19.0",
+        "express": "^4.17.1",
+        "msnodesqlv8": "^0.8.10",
+        "mssql": "^6.1.0"
+    }
+}
