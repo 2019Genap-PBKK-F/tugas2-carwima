@@ -1,5 +1,5 @@
-//const hostname = '127.0.0.1';
-const hostname = '10.199.14.46';
+const hostname = '127.0.0.1';
+//const hostname = '10.199.14.46';
 const fs = require('fs')
 const https = require('https')
 const port = 8020;
@@ -164,9 +164,9 @@ var server = app.listen(port, hostname, function () {
     console.log('Server is running..');
 });*/
 https.createServer({
-    key: fs.readFileSync('carwima.github.io.key', 'utf8'),
-    cert: fs.readFileSync('carwima.github.io.cert', 'utf8')
+    key: fs.readFileSync(__dirname+'/carwima.github.io.key', 'utf8'),
+    cert: fs.readFileSync(__dirname+'/carwima.github.io.cert', 'utf8')
   }, app)
   .listen(port, hostname, function () {
-    console.log('Example app listening on port 3000! Go to https://localhost:3000/')
+    console.log('Example app listening on port 3000! Go to https://'+hostname+':'+port+'/')
   })
