@@ -1,5 +1,7 @@
-//const hostname = '127.0.0.1';
-const hostname = '10.199.14.46';
+const hostname = '127.0.0.1';
+//const hostname = '10.199.14.46';
+const fs = require('fs')
+const https = require('https')
 const port = 8020;
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -8,7 +10,6 @@ const app = express();
 const sql = require('mssql');
 var cors = require('cors');
 app.use(cors());
- 
 // parse application/json
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended:false }));
@@ -158,7 +159,14 @@ app.delete('/api/DataDasar/:id', function (req, res) {
 app.get('/', function (req, res) {
   res.send('Hello World');
 });
-
+/*
 var server = app.listen(port, hostname, function () {
     console.log('Server is running..');
-});
+});*/
+https.createServer({
+    key: fs.readFileSync('carwima.github.io.key', 'utf8'),
+    cert: fs.readFileSync('carwima.github.io.cert', 'utf8')
+  }, app)
+  .listen(port, hostname, function () {
+    console.log('Example app listening on port 3000! Go to https://localhost:3000/')
+  })
