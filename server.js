@@ -90,7 +90,7 @@ app.get('/api/Kontak_kinerja/:id', function (req, res) {
     sql.connect(config, function (err) {
         if (err) console.log(err);
         var request = new sql.Request();
-        request.query("select aspek.aspek, aspek.komponen_aspek, MasterIndikator.nama, round(Indikator_SatuanKerja.bobot,3) as bobot, round(Indikator_SatuanKerja.target,3) as target, round(Indikator_SatuanKerja.capaian, 3) as capaian, CONCAT(round(Indikator_SatuanKerja.capaian/(Indikator_SatuanKerja.target+0.01),1),'%') as presentase from indikator_satuankerja left join indikator_periode on Indikator_SatuanKerja.id_master = indikator_periode.id_master left join MasterIndikator on masterindikator.id = Indikator_SatuanKerja.id_master left join Aspek on aspek.id = MasterIndikator.id_aspek where indikator_satuankerja.id_satker='"+req.params.id+"'  order by aspek.id", function (err, recordset) {
+        request.query("select aspek.aspek, aspek.komponen_aspek, MasterIndikator.nama, round(Indikator_SatuanKerja.bobot,3) as bobot, round(Indikator_SatuanKerja.target,3) as target, CONCAT(round(Indikator_SatuanKerja.capaian, 3), CONCAT('(',CONCAT(round(Indikator_SatuanKerja.capaian/(Indikator_SatuanKerja.target+0.01),1),'%)'))) as capaian from indikator_satuankerja left join indikator_periode on Indikator_SatuanKerja.id_master = indikator_periode.id_master left join MasterIndikator on masterindikator.id = Indikator_SatuanKerja.id_master left join Aspek on aspek.id = MasterIndikator.id_aspek where indikator_satuankerja.id_satker='"+req.params.id+"'  order by aspek.id", function (err, recordset) {
             if (err) console.log(err)
             res.send(recordset.recordset);
         });
