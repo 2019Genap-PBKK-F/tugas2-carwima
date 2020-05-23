@@ -1,5 +1,5 @@
-const hostname = '127.0.0.1';
-//const hostname = '10.199.14.46';
+//const hostname = '127.0.0.1';
+const hostname = '10.199.14.46';
 const fs = require('fs')
 const https = require('https')
 const port = 8020;
