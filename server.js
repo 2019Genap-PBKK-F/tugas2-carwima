@@ -525,7 +525,6 @@ app.get('/api/Aspek', function (req, res) {
     });
 });
 
-
 app.put('/api/Aspek/:id', function (req, res) {
     sql.connect(config, function (err) {
         if (err) console.log(err);
